@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import Job from "./Job";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { searchJobs } from "../redux/actions";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
   const jobs = useSelector((state) => state.jobs.data);
+  const dispatch = useDispatch();
 
   const Favlength = useSelector((state) => state.fav.content.length);
   const location = useNavigate();
@@ -46,7 +47,7 @@ const MainSearch = () => {
           <Form
             onSubmit={(e) => {
               e.preventDefault();
-              searchJobs(query);
+              dispatch(searchJobs(query));
             }}
           >
             <Form.Control

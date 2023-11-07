@@ -24,7 +24,7 @@ export const searchJobs = (param) => {
 
       const response = await fetch(baseEndpoint + param + "&limit=20");
       if (response.ok) {
-        let data = await response.json();
+        const { data } = await response.json();
         dispatch({
           type: GET_JOBS,
           payload: data,
