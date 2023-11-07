@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import Job from "./Job";
 import { useSelector } from "react-redux";
@@ -14,12 +14,6 @@ const MainSearch = () => {
 
   const handleChange = (e) => {
     setQuery(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    searchJobs(query);
   };
 
   return (
@@ -49,7 +43,12 @@ const MainSearch = () => {
           </div>
         </Col>
         <Col xs={10} className="mx-auto">
-          <Form onSubmit={handleSubmit}>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              searchJobs(query);
+            }}
+          >
             <Form.Control
               type="search"
               value={query}

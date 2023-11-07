@@ -17,11 +17,11 @@ export const removeFromFavourites = (param) => {
 };
 
 export const searchJobs = (param) => {
-  const baseEndpoint =
-    "https://strive-benchmark.herokuapp.com/api/jobs?search=";
-
   return async (dispatch) => {
     try {
+      const baseEndpoint =
+        "https://strive-benchmark.herokuapp.com/api/jobs?search=";
+
       const response = await fetch(baseEndpoint + param + "&limit=20");
       if (response.ok) {
         let data = await response.json();
